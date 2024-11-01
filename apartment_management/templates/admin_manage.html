@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Management</h1>
+        
+        <p>Welcome to the Admin Management page. Here you can manage various aspects of the apartment management system.</p>
+        
+        <div class="admin-section">
+            <h2>Manage Tenants</h2>
+            <p>View, add, or update tenant information.</p>
+            <a href="{{ url_for('manage_tenants') }}" class="btn">Manage Tenants</a>
+        </div>
+        
+        <div class="admin-section">
+            <h2>Manage Apartments</h2>
+            <p>View or update apartment listings and availability.</p>
+            <a href="{{ url_for('apartments') }}" class="btn">Manage Apartments</a>
+        </div>
+        
+        <div class="admin-section">
+            <h2>Maintenance Requests</h2>
+            <p>Review and manage maintenance requests.</p>
+            <a href="{{ url_for('maintenance_requests') }}" class="btn">View Maintenance Requests</a>
+        </div>
+
+        <div class="admin-section">
+            <h2>Reports</h2>
+            <p>View financial reports and other metrics.</p>
+            <a href="{{ url_for('reports') }}" class="btn">View Reports</a>
+        </div>
+        
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+</body>
+</html>

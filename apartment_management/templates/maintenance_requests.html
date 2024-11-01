@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance Requests</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <h1>Maintenance Requests</h1>
+    <form method="POST">
+        <input type="number" name="tenant_id" placeholder="Tenant ID" required>
+        <input type="number" name="apartment_id" placeholder="Apartment ID" required>
+        <input type="text" name="description" placeholder="Request Description" required>
+        
+        <p>Status:</p>
+        <label>
+            <input type="radio" name="status" value="pending" checked> Pending
+        </label>
+        <label>
+            <input type="radio" name="status" value="process"> In Progress
+        </label>
+        <label>
+            <input type="radio" name="status" value="done"> Done
+        </label>
+        
+        <button type="submit">Submit Request</button>
+    </form>
+
+    <h2>Current Maintenance Requests</h2>
+    <ul>
+        {% for request in requests %}
+            <li>{{ request[1] }} - Status: {{ request[2] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

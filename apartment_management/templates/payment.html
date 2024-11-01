@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenant Payment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="payment-container">
+        <h2>Tenant Payment</h2>
+        <form id="paymentForm" method="POST" action="{{ url_for('process_payment') }}">
+            <div class="step">
+                <h3>Step 1: Tenant Information</h3>
+                <label for="email">Tenant ID:</label>
+                <input type="number" name="tenant_id" value="{{ tenant.id }}"> <!-- Ensure tenant_id is set correctly -->
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="{{ tenant.email }}" readonly required>
+                
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" value="{{ tenant.username }}" readonly required>
+            </div>
+
+            <div class="step">
+                <h3>Step 2: Payment Method</h3>
+                <select id="payment_method" name="method" required>
+                    <option value="credit_card">Credit Card</option>
+                    <option value="cash">Cash</option>
+                    <option value="bank_transfer">Bank Transfer</option>
+                </select>
+            </div>
+
+            <div class="step">
+                <h3>Step 3: Transaction Details</h3>
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" required>
+            </div>
+
+            <div class="step">
+                <h3>Step 4: Confirmation</h3>
+                <button type="submit">Confirm Payment</button>
+            </div>
+        </form>
+
+        {% if payment_status %}
+            <div class="popup">
+                <p>{{ payment_status }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenant Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .payment-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label, input, select, button {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .popup {
+            display: block; /* Show the popup by default if payment is successful */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .popup p {
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h2>Make a Payment</h2>
+        <form action="{{ url_for('process_payment') }}" method="POST">
+            <label for="tenant_id">Tenant ID:</label>
+            <input type="number" name="tenant_id" required>
+        
+            <label for="amount">Payment Amount:</label>
+            <input type="number" name="amount" required>
+        
+            <label for="method">Payment Method:</label>
+            <select name="method" required>
+                <option value="Credit Card">Credit Card</option>
+                <option value="Bank Transfer">Bank Transfer</option>
+                <option value="Cash">Cash</option>
+            </select>
+        
+            <button type="submit">Submit Payment</button>
+        </form>
+        
+        {% if payment_success %}
+        <div class="popup">
+            <p>Payment Successful!</p>
+            <button onclick="window.print()">Print Receipt</button>
+            <a href="{{ url_for('process_payment') }}" style="text-decoration: none;">
+                <button>Close</button>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html> -->

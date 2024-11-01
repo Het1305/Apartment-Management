@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Apartment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Add Apartment</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="{{ url_for('add_apartment') }}" method="POST">
+            <label for="apartment_name">Apartment Name:</label>
+            <input type="text" name="apartment_name" required>
+        
+            <label for="apartment_location">Location:</label>
+            <input type="text" name="apartment_location" required>
+        
+            <label for="apartment_price">Price:</label>
+            <input type="number" name="apartment_price" required>
+        
+            <button type="submit">Add Apartment</button>
+        </form>
+        
+        <!-- <form method="POST" class="mt-4">
+            <div class="form-group">
+                <label for="apartment_name">Apartment Name</label>
+                <input type="text" class="form-control" id="apartment_name" name="apartment_name" required>
+            </div>
+            <div class="form-group">
+                <label for="apartment_location">Location</label>
+                <input type="text" class="form-control" id="apartment_location" name="apartment_location" required>
+            </div>
+            <div class="form-group">
+                <label for="apartment_price">Price</label>
+                <input type="number" class="form-control" id="apartment_price" name="apartment_price" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Apartment</button> -->
+        </form>
+    </div>
+</body>
+</html>

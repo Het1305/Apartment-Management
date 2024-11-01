@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartment Listings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <h1>Available Apartments</h1>
+
+    <form method="POST" action="/apartments">
+        <input type="text" name="number" placeholder="Apartment Number" required>
+        <select name="status" required>
+            <option value="occupied">Occupied</option>
+            <option value="vacant">Vacant</option>
+        </select>
+        <input type="number" name="rent" placeholder="Rent" step="0.01" required>
+        <button type="submit">Add Apartment</button>
+    </form>
+
+    <ul>
+        {% for apartment in apartments %}
+            <li>
+                Apartment {{ apartment[1] }} - Status: {{ apartment[2] }} - Rent: ${{ apartment[3] }}
+                <a href="{{ url_for('reports', apartment_id=apartment[0]) }}">View Reports</a>
+                <!-- Added Print Report Button -->
+                <form action="{{ url_for('print_report') }}" method="POST" style="display:inline;">
+                    <input type="hidden" name="tenant_id" value="{{ apartment[0] }}">
+                    <button type="submit">Print Report</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartment Listings</title>
+</head>
+<body>
+    <h1>Available Apartments</h1>
+
+    <form method="POST" action="/apartments">
+        <input type="text" name="number" placeholder="Apartment Number" required>
+        <select name="status" required>
+            <option value="occupied">Occupied</option>
+            <option value="vacant">Vacant</option>
+        </select>
+        <input type="number" name="rent" placeholder="Rent" step="0.01" required>
+        <button type="submit">Add Apartment</button>
+    </form>
+
+    <ul>
+        {% for apartment in apartments %}
+            <li>
+                Apartment {{ apartment[1] }} - Status: {{ apartment[2] }} - Rent: ${{ apartment[3] }}
+                <a href="{{ url_for('reports', apartment_id=apartment[0]) }}">View Reports</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+ -->

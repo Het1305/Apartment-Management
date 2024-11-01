@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Tenants</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <h1>Manage Tenants</h1>
+    <form method="post">
+        <label for="tenant_name">Name:</label>
+        <input type="text" name="tenant_name" required>
+    
+        <label for="apartment_number">Apartment Number:</label>
+        <input type="text" name="apartment_number" required>
+    
+        <label for="lease_start_date">Lease Start Date:</label>
+        <input type="date" name="lease_start_date" required>
+    
+        <label for="lease_end_date">Lease End Date:</label>
+        <input type="date" name="lease_end_date" required>
+    
+        <label for="contact_info">Contact Info (Phone):</label>
+        <input type="text" name="contact_info" required>
+    
+        <label for="email">Email:</label>
+        <input type="email" name="email" required>
+    
+        <label for="username">Username:</label>
+        <input type="text" name="username" required>
+    
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+    
+        <button type="submit">Add Tenant</button>
+    </form>
+    
+
+    <h2>Current Tenants</h2>
+    <ul>
+        {% for tenant in tenants %}
+            <li>{{ tenant[1] }} (Unit: {{ tenant[2] }}, Lease: {{ tenant[3] }} - {{ tenant[4] }}, Contact: {{ tenant[5] }},Email: {{ tenant[6] }},Username: {{ tenant[7] }}, Password: {{ tenant[8] }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

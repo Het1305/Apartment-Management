@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Payments</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="payment-container">
+        <h2>Payments</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tenant ID</th>
+                    <th>Amount</th>
+                    <th>Method</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for payment in payment %}
+                <tr>
+                    <td>{{ payment[0] }}</td> <!-- ID -->
+                    <td>{{ payment[1] }}</td> <!-- Tenant ID -->
+                    <td>{{ payment[2] }}</td> <!-- Amount -->
+                    <td>{{ payment[3] }}</td> <!-- Method -->
+                    <td>{{ payment[4] }}</td> <!-- Date -->
+                    <td>{{ payment[5] }}</td> <!-- Status -->
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6">No payments found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('manage_tenants') }}">Back to Tenant Management</a>
+    </div>
+</body>
+</html>
